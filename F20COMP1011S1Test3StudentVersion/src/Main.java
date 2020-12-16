@@ -1,3 +1,9 @@
+/*
+    Name:       Wyatt Kirschner
+    Date:       12/16/20
+    Purpose:    Test 3 - COMP1011
+ */
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

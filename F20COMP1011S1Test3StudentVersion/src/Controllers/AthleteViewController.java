@@ -64,12 +64,76 @@ public class AthleteViewController implements Initializable {
     private void getAllAthletes()
     {
         System.out.println("getAllAthletes method called");
+
+
+
+
+
     }
 
     @FXML
     private void checkBoxChanged()
     {
+        List <Athlete> objects = Arrays.asList(AthleteUtility.getAthleteFromJSON(new File("F20COMP1011S1Test3StudentVersion/src/Utilities/runners.json")));
+
+        ObservableList<Athlete> athleteList = FXCollections.observableList(objects);
+
+        if (maleCheckBox.isSelected() == true) {
+
+            System.out.println("M - True");
+
+            if (femaleCheckBox.isSelected() == true) {
+
+                System.out.println("F - True");
+
+                //tableView.setItems(getNumOfCustomersWithStream(athleteList, "male"));
+                rowsReturnedLabel.setText("Rows Returned: " + String.valueOf(athleteList.size()));
+
+            }
+
+            else {
+
+               rowsReturnedLabel.setText("Rows Returned: " + String.valueOf(getNumOfCustomersWithStream(athleteList, "male")));
+
+            }
+
+        }
+
+        else if (femaleCheckBox.isSelected() == true) {
+
+            if (maleCheckBox.isSelected() == true) {
+
+                System.out.println("M - True");
+                rowsReturnedLabel.setText("Rows Returned: " + String.valueOf(athleteList.size()));
+
+
+            }
+
+            else {
+
+                rowsReturnedLabel.setText("Rows Returned: " + String.valueOf(getNumOfCustomersWithStream(athleteList, "female")));
+
+            }
+        }
+
+        else {
+
+            rowsReturnedLabel.setText("Rows Returned: 0");
+        }
+
     }
+
+
+    public static long getNumOfCustomersWithStream(ObservableList<Athlete> athletes, String gender)
+    {
+        return athletes.stream()
+                .filter(athlete -> athlete.getGender().equals(gender)).count();
+    }
+
+
+
+
+
 
     @FXML
     private void getFastestFemale()
@@ -89,21 +153,6 @@ public class AthleteViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        // This will be used to pass information into the TableView
-
-        /*
-          @FXML
-    private TableColumn<Athlete, Integer> idColumn;
-
-    @FXML
-    private TableColumn<Athlete, String> genderColumn;
-
-    @FXML
-    private TableColumn<Athlete, String> firstNameColumn;
-
-    @FXML
-    private TableColumn<Athlete, String> lastNameColumn;
-         */
 
 
 
@@ -119,11 +168,18 @@ public class AthleteViewController implements Initializable {
             lastNameColumn.setCellValueFactory(new PropertyValueFactory< >("lastName"));
             tableView.setItems(athleteList);
 
+
+
+
+
             // Loads the idColumn being sorted by default
 
             idColumn.setSortType(TableColumn.SortType.ASCENDING);
             tableView.getSortOrder().add(idColumn);
             rowsReturnedLabel.setText("Rows Returned: " + String.valueOf(athleteList.size()));
+
+            maleCheckBox.setSelected(true);
+            femaleCheckBox.setSelected(true);
 
         } catch (IllegalArgumentException e)
         {

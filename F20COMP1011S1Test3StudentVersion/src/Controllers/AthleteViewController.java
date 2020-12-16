@@ -21,6 +21,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.File;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 import Models.Athlete;
@@ -154,8 +155,6 @@ public class AthleteViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
-
-
         try{
             // Working!
             List <Athlete> objects = Arrays.asList(AthleteUtility.getAthleteFromJSON(new File("F20COMP1011S1Test3StudentVersion/src/Utilities/runners.json")));
@@ -185,6 +184,25 @@ public class AthleteViewController implements Initializable {
         {
             e.printStackTrace();
         }
+
+        tableView.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) ->
+        {
+            try {
+                System.out.println("Selecting");
+                DecimalFormat df = new DecimalFormat("#.0");
+
+                numOfRunsLabel.setText(String.valueOf(newValue.getNumberOfRuns()));
+                avgDistanceLabel.setText(String.valueOf(df.format(newValue.getAvgDistance())));
+                paceLabel.setText(String.valueOf(df.format(newValue.getAvgPace())));
+            }
+            catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        });
+
+
+
+
 
     }
 }

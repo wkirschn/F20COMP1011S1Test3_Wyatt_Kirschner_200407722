@@ -17,7 +17,7 @@ public class AthleteUtility {
     public static Athlete[] getAthleteFromJSON(File jsonFile)
     {
         Gson gson = new Gson();
-        Athlete[] athleteQuery2 = null;
+        Athlete[] athleteQuery = null;
 
         try(
                 FileReader filereader = new FileReader(jsonFile);
@@ -25,13 +25,13 @@ public class AthleteUtility {
                 )
 
         {
-          athleteQuery2 = gson.fromJson(jsonReader, Athlete[].class);
-           System.out.println(athleteQuery2);
+          athleteQuery = gson.fromJson(jsonReader, Athlete[].class);
+           System.out.println(athleteQuery);
         } catch (Exception e)
         {
             e.printStackTrace();
         }
-        return athleteQuery2;
+        return athleteQuery;
     }
 
 

@@ -32,6 +32,7 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.getIcons().add(new Image("Views/icon.png"));
+        root.getStylesheets().add("Views/stylesheet.css");
         stage.setTitle("Athlete Tracker Database - COMP1011");
         stage.show();
     }

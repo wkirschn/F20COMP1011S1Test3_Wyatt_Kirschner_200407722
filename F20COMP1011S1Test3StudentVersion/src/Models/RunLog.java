@@ -1,10 +1,17 @@
 package Models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.time.LocalDate;
 
 public class RunLog implements Comparable<RunLog>{
+    @SerializedName("date")
     private String date;
+
+    @SerializedName("distanceInKM")
     private int distanceInKM;
+
+    @SerializedName("durationInSec")
     private double durationInSec;
 
     public RunLog(LocalDate date, int distanceInKM, double duration) {

@@ -4,6 +4,7 @@
     #b39ddb,#5e35b1);
     -fx-border-color: #b388ff;
     -fx-border-width: 10px;
+
     /*-fx-font-size: 20pt;*/
 
 }
@@ -13,7 +14,9 @@
 }
 .label
 {
-    -fx-font-size: 14px;
+    -fx-font-size: 19px;
     -fx-font-family: Calibri;
 
+
 }
+

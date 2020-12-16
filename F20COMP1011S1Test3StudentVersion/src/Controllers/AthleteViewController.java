@@ -61,10 +61,22 @@ public class AthleteViewController implements Initializable {
     @FXML
     private Label paceLabel;
 
+    public List <Athlete> objects = Arrays.asList(AthleteUtility.getAthleteFromJSON(new File("F20COMP1011S1Test3StudentVersion/src/Utilities/runners.json")));
+
+    public ObservableList<Athlete> athleteList = FXCollections.observableList(objects);
+
     @FXML
     private void getAllAthletes()
     {
         System.out.println("getAllAthletes method called");
+
+        tableView.setItems(athleteList);
+        maleCheckBox.setSelected(true);
+        femaleCheckBox.setSelected(true);
+
+        idColumn.setSortType(TableColumn.SortType.ASCENDING);
+        tableView.getSortOrder().add(idColumn);
+        rowsReturnedLabel.setText("Rows Returned: " + String.valueOf(athleteList.size()));
 
 
 
@@ -75,13 +87,17 @@ public class AthleteViewController implements Initializable {
     @FXML
     private void checkBoxChanged()
     {
-        List <Athlete> objects = Arrays.asList(AthleteUtility.getAthleteFromJSON(new File("F20COMP1011S1Test3StudentVersion/src/Utilities/runners.json")));
 
-        ObservableList<Athlete> athleteList = FXCollections.observableList(objects);
 
         if (maleCheckBox.isSelected() == true) {
 
             System.out.println("M - True");
+
+            List<Athlete> sortedList = athleteList.stream().sorted(Comparator.comparing(Athlete::getGender)).collect(Collectors.toList());
+                    System.out.println(sortedList);
+
+
+
 
             if (femaleCheckBox.isSelected() == true) {
 

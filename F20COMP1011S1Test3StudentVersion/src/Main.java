@@ -4,14 +4,24 @@
     Purpose:    Test 3 - COMP1011
  */
 
+import Models.Athlete;
+import com.google.gson.stream.JsonReader;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import Utilities.AthleteUtility;
+
+import java.io.File;
+import java.io.FileReader;
 
 public class Main extends Application {
     public static void main(String[] args) {
+
+
+        // Using this to show what is in the JSON file
+        AthleteUtility.getAthleteFromJSON(new File("F20COMP1011S1Test3StudentVersion/src/Utilities/runners.json"));
         launch(args);
     }
 
